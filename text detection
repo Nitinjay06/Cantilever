@@ -1,0 +1,18 @@
+import easyocr
+
+def ocr_core(image_path):
+    # Create an EasyOCR reader
+    reader = easyocr.Reader(['en'])  # Specify languages (e.g., 'en' for English)
+
+    # Perform OCR on the image
+    result = reader.readtext(image_path)
+
+    # Extract and concatenate the recognized text
+    text = ' '.join([entry[1] for entry in result])
+
+    return text
+
+
+image_path = "/kaggle/input/tesxtff/text.png"
+result = ocr_core(image_path)
+print(result)
